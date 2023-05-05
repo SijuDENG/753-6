@@ -35,7 +35,7 @@ pipeline {
             steps {
                 script {
                     echo 'Deploying to Staging Environment'
-                    withCredentials([file(credentialsId: '450525174369-j11ud84lmnmgk655odc25e7b1s0qtc09.apps.googleusercontent.com', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+                    withCredentials([file(credentialsId: 'My First Project', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
                 
                     }
                 }
@@ -57,7 +57,7 @@ pipeline {
         steps {
             script {
                 echo 'Deploying to Production Environment'
-                withCredentials([file(credentialsId: '450525174369-j11ud84lmnmgk655odc25e7b1s0qtc09.apps.googleusercontent.com', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+                withCredentials([file(credentialsId: 'My First Project', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
                                     }
             }
         }
