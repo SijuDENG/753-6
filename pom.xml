@@ -16,7 +16,12 @@
   </properties>
 
   <dependencies>
-    <!-- Add your project's dependencies here -->
+    <!-- https://mavenlibs.com/maven/dependency/org.owasp/dependency-check-cli -->
+    <dependency>
+      <groupId>org.owasp</groupId>
+      <artifactId>dependency-check-cli</artifactId>
+      <version>8.2.1</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -30,27 +35,38 @@
 
       <!-- SonarQube Maven plugin -->
       <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-checkstyle-plugin</artifactId>
-            <version>3.1.2</version>
-            <executions>
-                <execution>
-                    <id>validate</id>
-                    <phase>validate</phase>
-                    <configuration>
-                        <configLocation>google_checks.xml</configLocation> <!-- You can use other configuration files, like sun_checks.xml -->
-                        <encoding>UTF-8</encoding>
-                        <consoleOutput>true</consoleOutput>
-                        <failsOnError>true</failsOnError>
-                        <linkXRef>false</linkXRef>
-                    </configuration>
-                    <goals>
-                        <goal>check</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>3.1.2</version>
+        <executions>
+            <execution>
+                <id>validate</id>
+                <phase>validate</phase>
+                <configuration>
+                    <configLocation>google_checks.xml</configLocation> <!-- You can use other configuration files, like sun_checks.xml -->
+                    <encoding>UTF-8</encoding>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                    <linkXRef>false</linkXRef>
+                </configuration>
+                <goals>
+                    <goal>check</goal>
+                </goals>
+            </execution>
+        </executions>
+      </plugin>
 
+      <plugin>
+        <groupId>org.owasp</groupId>
+        <artifactId>dependency-check-maven</artifactId>
+        <executions>
+            <execution>
+                <goals>
+                    <goal>check</goal>
+                 </goals>
+            </execution>
+        </executions>
+      </plugin>
       <!-- Other plugins for your project -->
     </plugins>
   </build>
