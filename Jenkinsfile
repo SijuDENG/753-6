@@ -41,7 +41,6 @@ pipeline {
     stage('Integration Tests on Staging') {
         steps {
             script {
-                // Replace the following lines with your specific integration test steps
                 echo 'Running Integration Tests on Staging Environment'
                 echo 'Add your specific integration test steps here'
                 
@@ -63,15 +62,15 @@ pipeline {
     post {
         success {
             emailext attachLog: true,
-                     body: 'success',
-                     subject: 'success',
-                     to: 's222376251@deakin.edu.au'
-        }
+                   body: 'Security Scan stage completed successfully.',
+                    subject: 'Security Scan: Success',
+                    to: 'asasas3850@gmail.com'
+            }
         failure {
             emailext attachLog: true,
-                     body: 'failure',
-                     subject: 'failure',
-                     to: 's222376251@deakin.edu.au'
+                    body: 'Security Scan stage failed.',
+                    subject: 'Security Scan: Failure',
+                    to: 'asasas3850@gmail.com'
+            }
         }
-    }
 }
