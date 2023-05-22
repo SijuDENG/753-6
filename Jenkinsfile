@@ -60,24 +60,20 @@ pipeline {
 
     }
     post {
-        always {
-            script {
-                // This will get the console log up to this point
-                def log = currentBuild.rawBuild.logFile.text
-                emailext (
-                    subject: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) succeeded",
-                    body: "Jenkins Job '${env.JOB_NAME}' build number '${env.BUILD_NUMBER}' has succeeded. Here is the console output:\n${log}",
-                    recipientProviders: [[$class: 'DevelopersRecipientProvider']],
-                    to: 'your-email@example.com'
-                )
+        success {
+            emailext attachLog: true,
+                    body: 'Security Scan stage completed successfully.',
+                    subject: 'Security Scan: Success',
+                    to: 'asas385@live.com'
             }
+        failure {
+            emailext attachLog: true,
+                    body: 'Security Scan stage failed.',
+                    subject: 'Security Scan: Failure',
+                    to: 'asas385@live.com'
         }
     }
 }
-
-
-
-
 
 
 
