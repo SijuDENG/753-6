@@ -61,16 +61,16 @@ pipeline {
     }
     post {
         success {
-                mail to: 'asaas385@live.com'
-                    subject: 'Security Scan: Failure',
-                    body: 'Security Scan stage failed.'
-            }
-        failure {
-                mail to: 'asaas385@live.com'
-                    subject: 'Security Scan: Failure',
-                    body: 'Security Scan stage failed.'
-            }
+            mail to: 'asaas385@live.com'
+                subject: 'Security Scan: Failure',
+                body: 'Security Scan stage failed.'
         }
+        failure {
+            mail to: 'asaas385@live.com'
+                subject: 'Security Scan: Failure',
+                body: 'Security Scan stage failed.'
+        }
+    }
 }
 
 
