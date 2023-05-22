@@ -38,27 +38,27 @@ pipeline {
             }
         }
 
-    stage('Integration Tests on Staging') {
-        steps {
-            script {
-                echo 'Running Integration Tests on Staging Environment'
-                echo 'Add your specific integration test steps here'
+        stage('Integration Tests on Staging') {
+            steps {
+                script {
+                    echo 'Running Integration Tests on Staging Environment'
+                    echo 'Add your specific integration test steps here'
                 
+                }
             }
         }
-    }
 
-    stage('Deploy to Production') {
-        steps {
-            script {
-                echo 'Deploying to Production Environment'
-                withCredentials([file(credentialsId: 'asdfasdf', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+        stage('Deploy to Production') {
+            steps {
+                script {
+                    echo 'Deploying to Production Environment'
+                    withCredentials([file(credentialsId: 'asdfasdf', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
                                     }
+                }
             }
-        }
-    }    
+        }    
 
-
+    }
     post {
         success {
             emailext attachLog: true,
