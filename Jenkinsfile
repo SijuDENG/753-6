@@ -61,10 +61,16 @@ pipeline {
     }
     post {
         always {
-            emailext attachLog: true,
-                   body: 'Test email.',
-                   subject: 'Test Email',
-                   to: 'asas385@live.com'
+            script {
+                // This will get the console log up to this point
+                def log = currentBuild.rawBuild.logFile.text
+                emailext (
+                    subject: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) succeeded",
+                    body: "Jenkins Job '${env.JOB_NAME}' build number '${env.BUILD_NUMBER}' has succeeded. Here is the console output:\n${log}",
+                    recipientProviders: [[$class: 'DevelopersRecipientProvider']],
+                    to: 'your-email@example.com'
+                )
+            }
         }
     }
 }
